@@ -1,10 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import { ExampleComponent } from 'react-flip'
-import 'react-flip/dist/index.css'
+import { Wrapper } from "react-flip";
+import "react-flip/dist/index.css";
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
-}
+  return (
+    <div style={{height: '100vh', width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <Wrapper />
+    </div>
+  );
+};
 
-export default App
+export default App;
