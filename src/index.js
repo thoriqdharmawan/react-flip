@@ -6,8 +6,9 @@ export const Wrapper = (props) => {
     rotation = "right",
     duration = 0.6,
     flipCount = 1,
-    perspective = '500px',
+    perspective = "500px",
     trigger = "hover",
+    direction = "horizontal",
     ...child
   } = props;
   const [hover, setHover] = useState(false);
@@ -30,7 +31,7 @@ export const Wrapper = (props) => {
       transformStyle: "preserve-3d",
     },
     hover: {
-      transform: `rotateY(${deg}deg)`,
+      transform: `rotate${direction === "vertical" ? "X" : "Y"}(${deg}deg)`,
     },
     content: {
       backgroundColor: "#bbb",
@@ -52,71 +53,70 @@ export const Wrapper = (props) => {
   const rotationStart = () => {
     let rotationDeg = 0;
 
-    if (rotation === "left") {
-      rotationDeg = deg - (180 * flipCount);
+    if (rotation === "left" || rotation === "down" ) {
+      rotationDeg = deg - 180 * flipCount;
     } else {
-      rotationDeg = deg + (180 * flipCount);
+      rotationDeg = deg + 180 * flipCount;
     }
     setDeg(rotationDeg);
-  }
+  };
 
   const rotationEnd = () => {
     let rotationDeg = 0;
-    if (rotation === "left") {
+    if (rotation === "left" || rotation === "down" ) {
       if (flipForward) {
-        rotationDeg = deg - (180 * flipCount);
+        rotationDeg = deg - 180 * flipCount;
       } else {
-        rotationDeg = deg + (180 * flipCount);
+        rotationDeg = deg + 180 * flipCount;
       }
     } else {
       if (flipForward) {
-        rotationDeg = deg + (180 * flipCount);
+        rotationDeg = deg + 180 * flipCount;
       } else {
-        rotationDeg = deg - (180 * flipCount);
+        rotationDeg = deg - 180 * flipCount;
       }
     }
     setDeg(rotationDeg);
-  }
-  
+  };
+
   const rotationClick = () => {
     let rotationDeg = 0;
-    if(flipForward) {
-      if(rotation === "left") {
-        rotationDeg = deg - 180
+    if (flipForward) {
+      if (rotation === "left") {
+        rotationDeg = deg - 180;
       } else {
-        rotationDeg = deg + 180
+        rotationDeg = deg + 180;
       }
     } else {
-      if(rotation === "left") {
-        if(oddClick) {
-          rotationDeg = deg - 180
+      if (rotation === "left") {
+        if (oddClick) {
+          rotationDeg = deg - 180;
         } else {
-          rotationDeg = deg - 180
+          rotationDeg = deg - 180;
         }
       } else {
-        if(oddClick) {
-          rotationDeg = deg + 180
+        if (oddClick) {
+          rotationDeg = deg + 180;
         } else {
-          rotationDeg = deg + 180
+          rotationDeg = deg + 180;
         }
       }
     }
     setDeg(rotationDeg);
-  }
+  };
 
   const onMouseEnter = () => {
-    rotationStart()
+    rotationStart();
   };
 
   const onMouseLeave = () => {
-    rotationEnd()
+    rotationEnd();
   };
-  
+
   const rotationOnClick = () => {
-    setOddClick(!oddClick)
-    rotationClick()
+    setOddClick(!oddClick);
+    rotationClick();
   };
-  
 
   return (
     <div

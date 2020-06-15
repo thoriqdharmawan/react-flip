@@ -32,8 +32,9 @@ const App = () => {
       }}
     >
       <Wrapper
-        trigger="click"
-        // flipForward
+        trigger="hover"
+        direction="vertical"
+        flipForward
         rotation="left"
         duration={0.6}
         flipCount={1}
